@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [ -f ".pid" ]
+then
+  pid=$(tr -d '\r\n' < .pid)
+  rm .pid
+  if ps -f -p $pid | grep "node config.js" > /dev/null
+  then
+    kill $pid
+    echo "service killed"
+    exit 0
+  fi
+fi
+
+echo "service is not running"
+exit 1

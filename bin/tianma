@@ -1,0 +1,59 @@
+#! /usr/bin/env node
+
+/**
+ * Tianma - Bin
+ * Copyright(c) 2010 ~ 2012 Alibaba.com, Inc.
+ * MIT Licensed
+ */
+
+var program = require('commander'),
+	deploy = require('./deploy'),
+	express = require('./express'),
+	libpath = require('./libpath'),
+	version = require('../package.json').version;
+
+var bingo = false; // Command parameters accepted?
+
+program
+	.version(version)
+	.usage('[options] <command> [dir]')
+	.option('-s, --silent', 'don\'t print log message')
+	.option('-l, --log', 'write log file');
+	
+program
+	.command('deploy [dir]')
+	.description('Deploy default website to [dir]')
+	.action(function (dir) {
+		bingo = true;
+		deploy(dir || '.', !!program.silent, !!program.log);
+	});
+	
+program
+	.command('express [dir]')
+	.description('Run express service at [dir]')
+	.action(function (dir) {
+		bingo = true;
+		express(dir || '.', !!program.silent, !!program.log);
+	});
+
+program
+	.command('libpath')
+	.description('Print global lib path')
+	.action(function () {
+		bingo = true;
+		libpath();
+	});
+	
+program
+	.command('help')
+	.description('Display help information')
+	.action(function () {
+		bingo = true;
+		program.help();
+	});
+
+program.parse(process.argv);
+
+if (!bingo) {
+	console.log('Type \'tianma help\' for usage.');
+}

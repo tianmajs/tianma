@@ -1,0 +1,29 @@
+#!/bin/bash
+
+if ! command -v node > /dev/null
+then
+  echo "Please visit http://nodejs.org/ and install NodeJS first."
+  exit 1
+fi
+
+if ! command -v tianma > /dev/null
+then
+  echo "Please run \"npm install tianma -g\" to install Tianma first."
+  exit 1
+fi
+
+if [ -f ".pid" ]
+then
+  pid=$(tr -d '\r\n' < .pid)
+  if ps -f -p $pid | grep "node config.js" > /dev/null
+  then
+    echo "service is running"
+    exit 1
+  fi
+fi
+
+echo "service started"
+export NODE_PATH=`tianma libpath`
+node config.js&
+echo $! > .pid
+exit 0
