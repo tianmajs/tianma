@@ -13,7 +13,7 @@ tianma
 			pipe.combo(),
 			pipe.static({ root: './htdocs' }),
 			pipe.proxy({
-				'http://110.75.216.150/$1': /(?:(?:style|img)\.(?alibaba|aliexpress)\.com|aliimg\.com)\/(.*)/
+				'http://110.75.216.150/$1': /(?:(?:style|img)\.(?:alibaba|aliexpress)\.com|aliimg\.com)\/(.*)/
 			}),
 			pipe.beautify()
 		])

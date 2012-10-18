@@ -16,7 +16,7 @@ var bingo = false; // Command parameters accepted?
 
 program
 	.version(version)
-	.usage('[options] <command> [dir]')
+	.usage('[options] [dir] <command>')
 	.option('-s, --silent', 'don\'t print log message')
 	.option('-l, --log', 'write log file');
 	
