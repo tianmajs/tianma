@@ -29,8 +29,6 @@ var SOURCE_FOLDER = path.join(__dirname, '../deploy'),
 			}
 			console.log('delete : %s', pathname);
 		});
-
-		console.log('');
 	},
 
 	/**
@@ -68,9 +66,9 @@ var SOURCE_FOLDER = path.join(__dirname, '../deploy'),
 			}
 		}, null);
 
-		console.log('');
-
 		setup(dir, silent, log);
+
+		console.log('\n..done');
 	},
 
 	/**
