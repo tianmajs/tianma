@@ -23,6 +23,8 @@ var express = function (dir, silent, log) {
 					pipe.static({ wwwroot: './' })
 				])
 				.start();
+
+		console.log('Press [Ctrl+C] to stop service..');
 	};
 
 module.exports = express;
