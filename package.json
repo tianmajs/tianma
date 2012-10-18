@@ -16,7 +16,7 @@
 		"node": "0.8.x"
 	},
 	"dependencies": {
-		"beautifier": "0.2.x",
+		"beautifier": "0.1.x",
 		"clean-css": "0.6.x",
 		"commander": "1.0.x",
 	    "jsmin": "1.0.x",
