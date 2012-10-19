@@ -9,11 +9,11 @@ var tianma = require('tianma'),
 tianma
 	.init({ silent: <%=silent%>, log: <%=log%> })
 	.createHost({ port: 80, portssl: 443, key: 'key/unicorn.key', cert: 'key/unicorn.cer' })
-		.mount('style.aliunicorn.com', [
+		.mount('style.aliunicorn.com', [ // unicorn service
 			pipe.combo({ source: 'http://style.alibaba.com/' }),
 			pipe.beautify()
 		])
-		.mount('/', [ // static & unicorn service
+		.mount('/', [ // static service
 			pipe.static({ root: './htdocs' }),
 			pipe.proxy({
 				'http://110.75.216.150/$1': /(?:(?:style|img)\.(?:alibaba|aliexpress)\.com|aliimg\.com)\/(.*)/
