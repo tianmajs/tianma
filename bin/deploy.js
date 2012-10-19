@@ -50,6 +50,14 @@ var SOURCE_FOLDER = path.join(__dirname, '../deploy'),
 		var blackList = process.platform === 'win32' ?
 			[ 'startws', 'killws' ] : [ 'run.cmd' ];
 
+		// Create files with real uid & gid.
+		if (process.setuid && process.getuid) {
+			process.setuid(process.getuid());
+		}
+		if (process.setgid && process.getgid) {
+			process.setgid(process.getgid());
+		}
+
 		clear(dir);
 
 		travel(SOURCE_FOLDER, function (src, relative, isDir) {
