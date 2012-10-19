@@ -2,13 +2,13 @@
 
 SETLOCAL
 
-SET tmp=%PATH%;.
+SET "tmp=%PATH%;."
 
 :detectNode
 
 FOR /F "tokens=1* delims=;" %%a IN ("%tmp%") DO (
 	IF EXIST %%a\node.exe (
-		SET tmp=%PATH%;.
+		SET "tmp=%PATH%;."
 		GOTO :detectTianma
 	) ELSE (
 		IF "%%b"=="" (
@@ -16,7 +16,7 @@ FOR /F "tokens=1* delims=;" %%a IN ("%tmp%") DO (
 			ECHO.
 			GOTO :end
 		) ELSE (
-			SET tmp=%%b
+			SET "tmp=%%b"
 			GOTO :detectNode
 		)
 	)
@@ -33,7 +33,7 @@ FOR /F "tokens=1* delims=;" %%a IN ("%tmp%") DO (
 			ECHO.
 			GOTO :end
 		) ELSE (
-			SET tmp=%%b
+			SET "tmp=%%b"
 			GOTO :detectTianma
 		)
 	)
@@ -46,7 +46,7 @@ ENDLOCAL
 ECHO Press [Ctrl+C] to stop service..
 ECHO.
 
-FOR /F "delims=" %%a IN ('tianma libpath') DO SET NODE_PATH=%%a
+FOR /F "delims=" %%a IN ('tianma libpath') DO SET "NODE_PATH=%%a"
 node config.js
 
 :end
