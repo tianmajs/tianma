@@ -12,7 +12,7 @@ var program = require('commander'),
 	libpath = require('./libpath'),
 	version = require('../package.json').version;
 
-var bingo = false; // Command parameters accepted?
+var bingo = false; // Is Command parameters accepted.
 
 program
 	.version(version)
