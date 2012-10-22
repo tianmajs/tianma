@@ -10,8 +10,7 @@ tianma
 	.init({ silent: <%=silent%>, log: <%=log%> })
 	.createHost({ port: 80, portssl: 443, key: 'key/unicorn.key', cert: 'key/unicorn.cer' })
 		.mount('style.aliunicorn.com', [ // unicorn service
-			pipe.combo({ source: 'http://style.alibaba.com/' }),
-			pipe.beautify()
+			pipe.combo({ source: 'http://style.alibaba.com/' })
 		])
 		.mount('/', [ // static service
 			pipe.static({ root: './htdocs' }),
