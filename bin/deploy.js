@@ -12,26 +12,6 @@ var fs = require('fs'),
 var SOURCE_FOLDER = path.join(__dirname, '../deploy'),
 
 	/**
-	 * Delete an re-create dir.
-	 * @param dir {string}
-	 */
-	clear = function (dir) {
-		if (!fs.existsSync(dir)) {
-			fs.mkdirSync(dir);
-			console.log('create : %s', dir);
-		}
-
-		travel(dir, null, function (pathname, relative, isDir) {
-			if (isDir) {
-				fs.rmdirSync(pathname);
-			} else {
-				fs.unlinkSync(pathname);
-			}
-			console.log('delete : %s', pathname);
-		});
-	},
-
-	/**
 	 * Copy file synchronously.
 	 * @param src {string}
 	 * @param dst {string}
@@ -58,25 +38,41 @@ var SOURCE_FOLDER = path.join(__dirname, '../deploy'),
 			process.setgid(process.getgid());
 		}
 
-		clear(dir);
+		if (isEmpty(dir)) { // Deploy to empty directory only.
+			travel(SOURCE_FOLDER, function (src, relative, isDir) {
+				var dst;
 
-		travel(SOURCE_FOLDER, function (src, relative, isDir) {
-			var dst;
-
-			if (blackList.indexOf(relative) === -1) {
-				dst = path.join(dir, relative);
-				if (isDir) {
-					fs.mkdirSync(dst);
-				} else {
-					copySync(src, dst);
+				if (blackList.indexOf(relative) === -1) {
+					dst = path.join(dir, relative);
+					if (isDir) {
+						fs.mkdirSync(dst);
+					} else {
+						copySync(src, dst);
+					}
+					console.log('create : %s', dst);
 				}
-				console.log('create : %s', dst);
-			}
-		}, null);
+			}, null);
 
-		setup(dir, silent, log);
+			setup(dir, silent, log);
 
-		console.log('\n..done');
+			console.log('\n..done');
+		} else {
+			console.log('"%s" is not empty.', dir);
+		}
+	},
+
+	/**
+	 * Check deploy directory.
+	 * @param dir {string}
+	 * @return {boolean}
+	 */
+	isEmpty = function (dir) {
+		if (!fs.existsSync(dir)) {
+			fs.mkdirSync(dir);
+			console.log('create : %s', dir);
+		}
+
+		return fs.readdirSync(dir).length === 0;
 	},
 
 	/**
