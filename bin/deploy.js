@@ -7,7 +7,7 @@
 var fs = require('fs'),
 	path = require('path'),
 	tianma = require('tianma'),
-	util = tianma.util;
+	util = require('pegasus').util;
 
 var SOURCE_FOLDER = path.join(__dirname, '../deploy'),
 
@@ -27,9 +27,6 @@ var SOURCE_FOLDER = path.join(__dirname, '../deploy'),
 	 * @param log {boolean}
 	 */
 	deploy = function (dir, silent, log) {
-		var blackList = process.platform === 'win32' ?
-			[ 'startws', 'killws' ] : [ 'run.cmd' ];
-
 		// Create files with real uid & gid.
 		if (process.setuid && process.getuid) {
 			process.setuid(process.getuid());
@@ -40,17 +37,15 @@ var SOURCE_FOLDER = path.join(__dirname, '../deploy'),
 
 		if (isEmpty(dir)) { // Deploy to empty directory only.
 			travel(SOURCE_FOLDER, function (src, relative, isDir) {
-				var dst;
+				var dst = path.join(dir, relative);
 
-				if (blackList.indexOf(relative) === -1) {
-					dst = path.join(dir, relative);
-					if (isDir) {
-						fs.mkdirSync(dst);
-					} else {
-						copySync(src, dst);
-					}
-					console.log('create : %s', dst);
+				if (isDir) {
+					fs.mkdirSync(dst);
+				} else {
+					copySync(src, dst);
 				}
+
+				console.log('create : %s', dst);
 			}, null);
 
 			setup(dir, silent, log);

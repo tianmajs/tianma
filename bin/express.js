@@ -16,9 +16,8 @@ var tianma = require('tianma'),
 var express = function (dir, silent, log) {
 		process.chdir(dir);
 
-		tianma
-			.init({ silent: silent, log: log })
-			.createHost({ port: 80, portssl: 443 })
+		tianma({ silent: silent, log: log })
+			.createHost({ port: 80 })
 				.mount('/', [
 					pipe.static({ wwwroot: './' })
 				])

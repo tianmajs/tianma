@@ -15,10 +15,13 @@ var libpath = function () {
 			separator = process.platform === 'win32' ?
 				';' : ':';
 
-		nodePath = (nodePath ? nodePath.split(separator) : [])
-			.concat(current).join(separator);
+		nodePath = nodePath ? nodePath.split(separator) : [];
 
-		console.log(nodePath);
+		if (nodePath.indexOf(current) === -1) {
+			nodePath = nodePath.concat(current);
+		}
+
+		console.log(nodePath.join(separator));
 	};
 
 module.exports = libpath;

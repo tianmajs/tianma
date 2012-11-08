@@ -9,6 +9,7 @@
 var program = require('commander'),
 	deploy = require('./deploy'),
 	express = require('./express'),
+	ca = require('./ca'),
 	libpath = require('./libpath'),
 	version = require('../package.json').version;
 
@@ -34,6 +35,14 @@ program
 	.action(function (dir) {
 		bingo = true;
 		express(dir || '.', !!program.silent, !!program.log);
+	});
+	
+program
+	.command('ca <hostname> [dir]')
+	.description('Generate ssl certificates for <hostname>')
+	.action(function (hostname, dir) {
+		bingo = true;
+		ca(hostname, dir || '.');
 	});
 
 program
