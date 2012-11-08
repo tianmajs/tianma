@@ -7,7 +7,7 @@ var tianma = require('tianma'),
 	pipe = tianma.pipe;
 
 tianma({ silent: <%=silent%>, log: <%=log%> })
-	.createHost({ port: 80, portssl: 443, key: 'key/unicorn.key', cert: 'key/unicorn.cer' })
+	.createHost({ port: 80, portssl: 443 })
 		.mount('style.aliunicorn.com', [ // unicorn service
 			pipe.combo({ source: 'http://style.alibaba.com/' })
 		])
