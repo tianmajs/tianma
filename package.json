@@ -11,17 +11,13 @@
 		"url": "git://github.com/nqdeng/tianma.git"
 	},
 	"author": "Nanqiao Deng <nqdeng@gmail.com>",
-	"version": "0.5.2",
+	"version": "0.5.3",
 	"engines": {
 		"node": "0.8.x"
 	},
 	"dependencies": {
-		"beautifier": "0.1.x",
-		"clean-css": "0.6.x",
 		"commander": "1.0.x",
-	    "jsmin": "1.0.x",
-	    "pegasus": "0.5.x",
-	    "smc": "0.1.x"
+	    "pegasus": "0.5.x"
   	},
 	"main": "lib/main.js",
 	"bin" : {
