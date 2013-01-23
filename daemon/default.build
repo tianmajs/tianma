@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="YCombo" default="build" basedir=".">
+	<include buildfile="default.properties" failonerror="true" />
+	
+	<target name="clean">
+		<delete file="${build.dir}/tianmad.exe" />
+	</target>
+	
+	<target name="build" depends="clean">
+		<mkdir dir="${build.dir}" />
+	
+		<csc target="winexe" output="${build.dir}/tianmad.exe" win32icon="${res.dir}/app.ico">
+			<sources>
+				<include name="${src.dir}/*.cs" />
+			</sources>
+			<resources>
+				<include name="${res.dir}/running.ico" />
+				<include name="${res.dir}/stopped.ico" />
+			</resources>
+		</csc>
+	</target>
+</project>

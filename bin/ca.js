@@ -50,7 +50,7 @@ var ROOT_CER = path.join(__dirname, '../deploy/certificates/tianma.cer'),
 			req = [
 				'req',
 				'-new',
-				'-subj', '\'/C=CN/ST=ZHEJIANG/L=HANGZHOU/O=Alibaba/OU=B2B-F2E/CN=' + hostname + '\'',
+				'-subj', '/C=CN/ST=ZHEJIANG/L=HANGZHOU/O=Alibaba/OU=B2B-F2E/CN=' + hostname,
 				'-key', hostname + '.key',
 				'-out', hostname + '.csr'
 			],
