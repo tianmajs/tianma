@@ -47,6 +47,10 @@ ECHO Press [Ctrl+C] to stop service..
 ECHO.
 
 FOR /F "delims=" %%a IN ('tianma libpath') DO SET "NODE_PATH=%%a"
-node config.js
+IF "%1"=="" (
+	node config.js
+) ELSE (
+	node %1
+)
 
 :end

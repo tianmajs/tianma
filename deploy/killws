@@ -4,7 +4,7 @@ if [ -f ".pid" ]
 then
   pid=$(tr -d '\r\n' < .pid)
   rm .pid
-  if ps -f -p $pid | grep "node config.js" > /dev/null
+  if ps -f -p $pid | grep "node" > /dev/null
   then
     kill $pid
     echo "service killed"

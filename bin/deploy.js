@@ -93,13 +93,11 @@ var SOURCE_FOLDER = path.join(__dirname, '../deploy'),
 		console.log('update : %s', filename);
 
 		if (process.platform !== 'win32') {
-			filename = path.join(dir, 'startws');
-			fs.chmodSync(filename, '755');
-			console.log('update : %s', filename);
-
-			filename = path.join(dir, 'killws');
-			fs.chmodSync(filename, '755');
-			console.log('update : %s', filename);
+			[ 'startws', 'killws', 'run' ].forEach(function (filename) {
+				filename = path.join(dir, filename);
+				fs.chmodSync(filename, '755');
+				console.log('update : %s', filename);
+			});
 		}
 	},
 

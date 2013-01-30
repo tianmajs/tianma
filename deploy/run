@@ -12,23 +12,13 @@ then
   exit 1
 fi
 
-if [ -f ".pid" ]
-then
-  pid=$(tr -d '\r\n' < .pid)
-  if ps -f -p $pid | grep "node" > /dev/null
-  then
-    echo "service is running"
-    exit 1
-  fi
-fi
+echo "Press [Ctrl+C] to stop service.."
+echo ""
 
-echo "service started"
 export NODE_PATH=`tianma libpath`
 if [ -z "$1" ]
 then
-	node config.js &> /dev/null &
+	node config.js
 else
-	node $1 &> /dev/null &
+	node $1
 fi
-echo $! > .pid
-exit 0
