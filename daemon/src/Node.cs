@@ -138,6 +138,7 @@ namespace Alibaba.F2E.Tianma {
 			process.StartInfo.CreateNoWindow = true;
 			process.StartInfo.UseShellExecute = false;
 			process.StartInfo.RedirectStandardOutput = true;
+			process.StartInfo.RedirectStandardError = true;
 			process.Start();
 
 			string output = process.StandardOutput.ReadToEnd().Trim();

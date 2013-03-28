@@ -14,5 +14,5 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyProduct("TianmaD")]
 [assembly: AssemblyCopyright("Copyright @ 2013 Alibaba.Com, Inc.")]
 [assembly: AssemblyCulture("")]
-[assembly: AssemblyVersion("1.0.0.1")]
+[assembly: AssemblyVersion("1.0.0.2")]
 [assembly: ComVisible(false)]
