@@ -1,9 +1,3 @@
-/**
- * Tianma - Bin - LibPath
- * Copyright(c) 2010 ~ 2012 Alibaba.com, Inc.
- * MIT Licensed
- */
-
 var path = require('path');
 
 	/**
@@ -11,15 +5,20 @@ var path = require('path');
 	 */
 var libpath = function () {
 		var nodePath = process.env['NODE_PATH'],
-			current = path.join(__dirname, '../../'),
+			pathnames = [
+				path.join(__dirname, '../../'),
+				path.join(__dirname, '../node_modules/')
+			],
 			separator = process.platform === 'win32' ?
 				';' : ':';
 
 		nodePath = nodePath ? nodePath.split(separator) : [];
 
-		if (nodePath.indexOf(current) === -1) {
-			nodePath = nodePath.concat(current);
-		}
+		pathnames.forEach(function (pathname) {
+			if (nodePath.indexOf(pathname) === -1) {
+				nodePath = nodePath.concat(pathname);
+			}
+		});
 
 		console.log(nodePath.join(separator));
 	};

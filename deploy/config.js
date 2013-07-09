@@ -6,16 +6,9 @@
 var tianma = require('tianma'),
 	pipe = tianma.pipe;
 
-tianma({ silent: <%=silent%>, log: <%=log%> })
-	.createHost({ port: 80, portssl: 443 })
-		.mount('style.aliunicorn.com', [ // unicorn service
-			pipe.combo({ source: 'http://style.alibaba.com/' })
-		])
-		.mount('/', [ // static service
-			pipe.static({ root: './htdocs' }),
-			pipe.proxy({
-				'http://110.75.216.150/$1': /(?:(?:style|img)\.(?:alibaba|aliexpress)\.com|aliimg\.com)\/(.*)/
-			}),
-			pipe.beautify()
+tianma
+	.createHost({ port: 80 })
+		.mount('/', [
+			pipe.static({ root: './htdocs' })
 		])
 		.start();

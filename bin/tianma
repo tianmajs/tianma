@@ -17,16 +17,14 @@ var bingo = false; // Is Command parameters accepted.
 
 program
 	.version(version)
-	.usage('<command> [dir] [options]')
-	.option('-s, --silent', 'don\'t print log message')
-	.option('-l, --log', 'write log file');
+	.usage('<command> [dir] [options]');
 	
 program
 	.command('deploy [dir]')
 	.description('Deploy default website to [dir]')
 	.action(function (dir) {
 		bingo = true;
-		deploy(dir || '.', !!program.silent, !!program.log);
+		deploy(dir || '.');
 	});
 	
 program
@@ -34,7 +32,7 @@ program
 	.description('Run express service at [dir]')
 	.action(function (dir) {
 		bingo = true;
-		express(dir || '.', !!program.silent, !!program.log);
+		express(dir || '.');
 	});
 	
 program

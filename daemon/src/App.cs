@@ -1,9 +1,3 @@
-/**
- * Tianma Daemon
- * Copyright(c) 2013 Alibaba.Com, Inc.
- * MIT Licensed
- */
-
 using System;
 using System.Windows.Forms;
 
@@ -14,6 +8,9 @@ namespace Alibaba.F2E.Tianma {
 
 		// Tray control.
 		Tray tray;
+
+		// Logger control.
+		Logger logger;
 
 		// File watcher.
 		Watcher watcher;
@@ -30,6 +27,7 @@ namespace Alibaba.F2E.Tianma {
 		public App(string config) {
 			tray = new Tray(config);
 			node = new Node(config);
+			logger = new Logger();
 			watcher = new Watcher(config);
 
 			tray.AddHandler("start", node.Start);
@@ -43,6 +41,8 @@ namespace Alibaba.F2E.Tianma {
 			node.AddHandler("stopped", tray.Refresh);
 			node.AddHandler("output", tray.Notify);
 			node.AddHandler("error", tray.Notify);
+			node.AddHandler("output", logger.Write);
+			node.AddHandler("error", logger.Write);
 
 			watcher.AddHandler("change", node.Restart);
 			watcher.AddHandler("change", tray.Notify);
@@ -59,6 +59,7 @@ namespace Alibaba.F2E.Tianma {
 		// Terminate application.
 		void Exit(object sender, EventArgs args) {
 			tray.Dispose();
+			logger.Dispose();
 			ExitThread();
 		}
 	}

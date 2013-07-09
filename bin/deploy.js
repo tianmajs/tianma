@@ -1,9 +1,3 @@
-/**
- * Tianma - Bin - Deploy
- * Copyright(c) 2010 ~ 2012 Alibaba.com, Inc.
- * MIT Licensed
- */
-
 var fs = require('fs'),
 	path = require('path'),
 	tianma = require('tianma'),
@@ -23,10 +17,8 @@ var SOURCE_FOLDER = path.join(__dirname, '../deploy'),
 	/**
 	 * Copy all contents of src folder to dst folder.
 	 * @param dir {string}
-	 * @param silent {boolean}
-	 * @param log {boolean}
 	 */
-	deploy = function (dir, silent, log) {
+	deploy = function (dir) {
 		// Create files with real uid & gid.
 		if (process.setuid && process.getuid) {
 			process.setuid(process.getuid());
@@ -48,7 +40,7 @@ var SOURCE_FOLDER = path.join(__dirname, '../deploy'),
 				console.log('create : %s', dst);
 			}, null);
 
-			setup(dir, silent, log);
+			setup(dir);
 
 			console.log('\n..done');
 		} else {
@@ -73,10 +65,8 @@ var SOURCE_FOLDER = path.join(__dirname, '../deploy'),
 	/**
 	 * Setup config.js and loader.
 	 * @param dir {string}
-	 * @param silent {boolean}
-	 * @param log {boolean}
 	 */
-	setup = function (dir, silent, log) {
+	setup = function (dir) {
 		var filename,
 			content;
 
@@ -84,8 +74,6 @@ var SOURCE_FOLDER = path.join(__dirname, '../deploy'),
 		fs.writeFileSync(
 			filename,
 			util.tmpl(fs.readFileSync(filename, 'utf-8'), {
-				log: '' + log,
-				silent: '' + silent,
 				version: tianma.version
 			}),
 			'utf-8'

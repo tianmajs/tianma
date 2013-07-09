@@ -2,14 +2,14 @@
 
 if [ -f ".pid" ]
 then
-  pid=$(tr -d '\r\n' < .pid)
-  rm .pid
-  if ps -f -p $pid | grep "node" > /dev/null
-  then
-    kill $pid
-    echo "service killed"
-    exit 0
-  fi
+	pid=$(tr -d '\r\n' < .pid)
+	rm .pid
+	if ps -f -p $pid | grep "node" > /dev/null
+	then
+	kill $pid
+		echo "service killed"
+		exit 0
+	fi
 fi
 
 echo "service is not running"

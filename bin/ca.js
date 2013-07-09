@@ -1,9 +1,3 @@
-/**
- * Tianma - Bin - CA
- * Copyright(c) 2010 ~ 2012 Alibaba.com, Inc.
- * MIT Licensed
- */
-
 var crypto = require('crypto'),
 	execFile = require('child_process').execFile,
 	fs = require('fs'),

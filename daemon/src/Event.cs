@@ -1,9 +1,3 @@
-/**
- * Tianma Daemon
- * Copyright(c) 2013 Alibaba.Com, Inc.
- * MIT Licensed
- */
-
 using System;
 using System.Collections.Generic;
 

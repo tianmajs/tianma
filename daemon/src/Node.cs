@@ -1,9 +1,3 @@
-/**
- * Tianma Daemon
- * Copyright(c) 2013 Alibaba.Com, Inc.
- * MIT Licensed
- */
-
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -57,13 +51,12 @@ namespace Alibaba.F2E.Tianma {
 		public Node(string config) {
 			timer = new System.Timers.Timer();
 			timer.Interval = 100;
-			timer.Enabled = true;
 			timer.Elapsed += Flush;
 
 			startInfo = new ProcessStartInfo();
 
 			startInfo.FileName = FindExec("node.exe");
-			startInfo.Arguments = config;
+			startInfo.Arguments = "\"" + config + "\"";
 			startInfo.CreateNoWindow = true;
 			startInfo.UseShellExecute = false;
 			startInfo.RedirectStandardError = true;
@@ -79,7 +72,7 @@ namespace Alibaba.F2E.Tianma {
 		// Restart process.
 		public void Restart(object sender, EventArgsEx args) {
 			if (args.Type == "switch") {
-				startInfo.Arguments = args.Message;
+				startInfo.Arguments = "\"" + args.Message + "\"";
 			}
 
 			if (status == Status.Running) {
@@ -105,6 +98,7 @@ namespace Alibaba.F2E.Tianma {
 				process.Exited += OnExit;
 
 				process.Start();
+				process.PriorityClass = ProcessPriorityClass.High;
 				process.BeginErrorReadLine();
 				process.BeginOutputReadLine();
 
@@ -165,7 +159,9 @@ namespace Alibaba.F2E.Tianma {
 
 		// Flush buffer.
 		void Flush(object sender, ElapsedEventArgs args) {
-			if (output.Length > 0) {
+			if (!timer.Enabled) {
+				return;
+			} else if (output.Length > 0) {
 				EmitEvent("output", output);
 				output = "";
 			} else if (error.Length > 0) {
@@ -182,7 +178,9 @@ namespace Alibaba.F2E.Tianma {
 		// Standard error event handler.
 		void OnError(object sender, DataReceivedEventArgs args) {
 			if (!String.IsNullOrEmpty(args.Data)) {
+				timer.Stop();
 				error += args.Data + "\n";
+				timer.Start();
 			}
 		}
 
@@ -199,7 +197,9 @@ namespace Alibaba.F2E.Tianma {
 		// Standard output event handler.
 		void OnOutput(object sender, DataReceivedEventArgs args) {
 			if (!String.IsNullOrEmpty(args.Data)) {
+				timer.Stop();
 				output += args.Data + "\n";
+				timer.Start();
 			}
 		}
 	}

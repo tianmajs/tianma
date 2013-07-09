@@ -1,9 +1,3 @@
-/**
- * Tianma Daemon
- * Copyright(c) 2013 Alibaba.Com, Inc.
- * MIT Licensed
- */
-
 using System.IO;
 
 namespace Alibaba.F2E.Tianma {
