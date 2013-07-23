@@ -5,20 +5,15 @@ var path = require('path');
 	 */
 var libpath = function () {
 		var nodePath = process.env['NODE_PATH'],
-			pathnames = [
-				path.join(__dirname, '../../'),
-				path.join(__dirname, '../node_modules/')
-			],
+			pathname = path.join(__dirname, '../bridge/'),
 			separator = process.platform === 'win32' ?
 				';' : ':';
 
 		nodePath = nodePath ? nodePath.split(separator) : [];
 
-		pathnames.forEach(function (pathname) {
-			if (nodePath.indexOf(pathname) === -1) {
-				nodePath = nodePath.concat(pathname);
-			}
-		});
+		if (nodePath.indexOf(pathname) === -1) {
+			nodePath = nodePath.concat(pathname);
+		}
 
 		console.log(nodePath.join(separator));
 	};
