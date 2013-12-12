@@ -1,5 +1,5 @@
-var crypto = require('crypto'),
-	execFile = require('child_process').execFile,
+var cp = require('child_process'),
+	crypto = require('crypto'),
 	fs = require('fs'),
 	path = require('path');
 
@@ -60,18 +60,10 @@ var ROOT_CER = path.join(__dirname, '../deploy/certificates/tianma.cer'),
 			],
 			tmp;
 
-		// Create files with real uid & gid.
-		if (process.setuid && process.getuid) {
-			process.setuid(process.getuid());
-		}
-		if (process.setgid && process.getgid) {
-			process.setgid(process.getgid());
-		}
-
 		if (exec) {
 			batch(exec, [ genrsa, req, x509 ], function (err) {
 				if (err) {
-					console.error(err.message);
+					console.log('[!] %s', err.message);
 				} else {
 					console.log('create: %s', path.join(dir, hostname + '.cer'));
 					console.log('create: %s', path.join(dir, hostname + '.key'));
@@ -82,7 +74,7 @@ var ROOT_CER = path.join(__dirname, '../deploy/certificates/tianma.cer'),
 				fs.unlink(path.join(dir, hostname + '.csr'));
 			});
 		} else {
-			console.log('Please install OpenSSL first.');
+			console.log('[!] Please install OpenSSL first.');
 		}
 	},
 
@@ -126,7 +118,7 @@ var ROOT_CER = path.join(__dirname, '../deploy/certificates/tianma.cer'),
 		}
 
 		return exec ? function (args, callback) {
-				execFile(exec, args, { cwd: cwd }, callback);
+				cp.execFile(exec, args, { cwd: cwd }, callback);
 			} : null;
 	};
 

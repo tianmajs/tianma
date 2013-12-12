@@ -2,7 +2,7 @@ var tianma = require('tianma'),
 	pipe = tianma.pipe;
 
 	/**
-	 * Run express service at dir.
+	 * Run express service.
 	 * @param dir {string}
 	 */
 var express = function (dir) {
