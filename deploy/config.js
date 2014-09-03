@@ -2,12 +2,7 @@
  * Configure your website here.
  */
 
-var tianma = require('tianma'),
-	pipe = tianma.pipe;
+var tianma = require('tianma');
 
-tianma
-	.createHost({ port: 80 })
-		.mount('/', [
-			pipe.static({ root: './htdocs' })
-		])
-		.start();
+tianma(80)
+	.static();
