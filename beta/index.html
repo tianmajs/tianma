@@ -575,15 +575,14 @@ tianma({ port: config.port || 80 })      // 允许使用者自定义HTTP端口
 <p>   如果后续模块返回的所有响应的<code>Content-Type</code>一致，该模块就将所有响应内容合并后返回。</p>
 </blockquote>
 <ul>
-<li><p><em>默认配置</em>下，合并JS或CSS时使用<code>\n</code>作为<em>内容分隔符</em>，合并其它类型文件时不使用分隔符。</p>
+<li><p>通常用于合并JS/CSS文件请求，文件内容之间使用<code>\n</code>作为<em>内容分隔符</em>。</p>
 <pre><code>  tianma()
       .combo()
       .static()</code></pre>
 </li>
-<li><p><em>自定义</em>文件内容分隔符。</p>
-<pre><code>  tianma()
-      .combo({ &quot;js&quot;: &quot;;&quot;, &quot;css&quot;: &quot;\n&quot; })
-      .static()</code></pre>
+<li><p>该模块自动为合并后的JS/CSS生成<em>Source Map</em>以便于代码调试。</p>
+</li>
+<li><p>JS/CSS<em>自带的</em>Source Map会被<em>合并</em>在自动生成的Source Map当中。</p>
 </li>
 </ul>
 <h3 id="3.4">compress</h3>

@@ -56,17 +56,15 @@
 >	
 >	如果后续模块返回的所有响应的`Content-Type`一致，该模块就将所有响应内容合并后返回。
 
-+ *默认配置*下，合并JS或CSS时使用`\n`作为*内容分隔符*，合并其它类型文件时不使用分隔符。
++ 通常用于合并JS/CSS文件请求，文件内容之间使用`\n`作为*内容分隔符*。
 
 		tianma()
 			.combo()
 			.static()
 
-+ *自定义*文件内容分隔符。
++ 该模块自动为合并后的JS/CSS生成*Source Map*以便于代码调试。
 
-		tianma()
-			.combo({ "js": ";", "css": "\n" })
-			.static()
++ JS/CSS*自带的*Source Map会被*合并*在自动生成的Source Map当中。
 
 ### compress
 
