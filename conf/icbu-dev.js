@@ -3,9 +3,9 @@ var path = require('path'),
 
 tianma(80)
 	.mount('i.alicdn.com')
-		.use('unicornis')
+		.use('unicornis', { debug: true })
 		.refresh({
-			action: 'ucc',
+			action: 'ucc -c debug',
 			target: path.join(config.root || './assets', '$1'),
 			pattern: /^\/((?:[^\/]+\/){3})/
 		})
