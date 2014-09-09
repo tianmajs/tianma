@@ -4,7 +4,7 @@ var fs = require('fs'),
 	path = require('path'),
 	util = require('mini-util');
 
-var	PATH_SOURCE = path.join(__dirname, '../deploy'),
+var	PATH_RESOURCE = path.join(__dirname, '../res'),
 
 	PATH_GLOBAL = path.join(process.env['HOME']
 			|| process.env['USERPROFILE']
@@ -43,7 +43,7 @@ function cp(source, target) {
 function checkGlobalDir() {
 	if (!fs.existsSync(PATH_GLOBAL)) {
 		fs.mkdirSync(PATH_GLOBAL);
-		cp(PATH_SOURCE, PATH_GLOBAL);
+		cp(PATH_RESOURCE, PATH_GLOBAL);
 	}
 }
 

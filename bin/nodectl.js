@@ -110,6 +110,8 @@ var	run = exports.run = function (config) {
 	
 	if (!config) {
 		return console.log('Config "%s" not found', config);
+	} else {
+		process.env['TIANMA_PATH'] = path.dirname(config);
 	}
 
 	var args = [ '--harmony', PATH_BOOTSTRAP, config ];
@@ -133,6 +135,8 @@ var	start = exports.start = function (config) {
 	
 	if (!config) {
 		return console.log('Config "%s" not found', config);
+	} else {
+		process.env['TIANMA_PATH'] = path.dirname(config);
 	}
 	
 	isRunning(function (pid) {

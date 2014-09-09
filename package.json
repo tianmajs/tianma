@@ -11,7 +11,7 @@
 		"url": "git://github.com/nqdeng/tianma.git"
 	},
 	"author": "Nanqiao Deng <nqdeng@gmail.com>",
-	"version": "0.9.0",
+	"version": "0.9.1",
 	"engines": {
 		"node": ">=0.10.0"
 	},
@@ -21,9 +21,9 @@
 	    "pegasus": "~0.9.0",
 	    "lru-cache": "~2.5.0",
 	    "node-forge": "~0.6.12",
-	    "mime-types": "~1.0.0",
 	    "mini-util": "~1.0.0",
-	    "semver": "~3.0.0"
+	    "semver": "~3.0.0",
+	    "source-map": "~0.1.0"
   	},
 	"main": "lib/main.js",
 	"bin" : {
