@@ -592,12 +592,12 @@ tianma({ port: config.port || 80 })      // 允许使用者自定义HTTP端口
 <ul>
 <li><p><em>默认配置</em>下，对<code>js</code>、<code>css</code>和<code>html</code>启用压缩。</p>
 <pre><code>  tianma()
-      .combo()
+      .compress()
       .static()</code></pre>
 </li>
 <li><p><em>自定义</em>需要压缩的文件类型。</p>
 <pre><code>  tianma()
-      .combo(&#39;js&#39;, &#39;css&#39;, &#39;svg&#39;)
+      .compress(&#39;js&#39;, &#39;css&#39;, &#39;svg&#39;)
       .static()</code></pre>
 </li>
 </ul>

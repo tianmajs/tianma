@@ -73,13 +73,13 @@
 + *默认配置*下，对`js`、`css`和`html`启用压缩。
 
 		tianma()
-			.combo()
+			.compress()
 			.static()
 
 + *自定义*需要压缩的文件类型。
 
 		tianma()
-			.combo('js', 'css', 'svg')
+			.compress('js', 'css', 'svg')
 			.static()
 
 ### dynamic
