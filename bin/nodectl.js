@@ -160,7 +160,6 @@ var	start = exports.start = function (config) {
 		
 		child.on('exit', function (code) {
 			clearTimeout(handle);
-			fs.unlinkSync(tag);
 			
 			if (code !== 0) {
 				process.stdout.write('\b');
