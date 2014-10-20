@@ -390,7 +390,7 @@
 在编写自定义模块时，有以下三种常用模式：
 
 + 模块可以在处理完请求后，直接通过`res()`返回响应。如果在处理过程中有异常发生，模块可以通过`res(err)`抛出异常，天马会自动返回一个500响应。
-		
+
 		// 读取请求的文件
 		function readFile(req, res) {
 			fs.readFile(req.pathname, function (err, data) {
@@ -460,9 +460,9 @@
 ### Generator
 
 如果天马运行在NodeJS `v0.11.x`版本以上，还可以使用*Generator*编写模块，以简化*异步操作*与*异常处理*。并且，Generator模块中*不需要*显示调用`res()`来返回响应。
-	
+
 	// 使用Generator简化上例中profile函数的编写
-	function profile(req, res) {
+	function* profile(req, res) {
 		var start = new Date;                          // 完成部分工作
 		yield req;                                     // 将请求交给后续模块
 		res.head('x-process-time', new Date - start);  // 完成剩余工作
@@ -472,7 +472,7 @@
 	function* combo(req, res) {
 		var parts = req.path.split('??'),
 			base = parts[0],
-			pathnames = parts[1],
+			pathnames = parts[1].split(','),
 			data = [];
 
 		for (var i = 0, len = pathnames.length; i < len; ++i) {
