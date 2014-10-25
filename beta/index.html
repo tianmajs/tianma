@@ -304,12 +304,12 @@ margin-top: 4em;
 <h2 id="1">入门</h2>
 <h3 id="1.1">安装</h3>
 <p>首先请安装<a href="http://nodejs.org">NodeJS</a>，然后在终端下使用以下命令安装天马。</p>
-<pre><code>$ npm install tianma -g</code></pre>
+<pre><code>$ npm install tianma-beta -g</code></pre>
 <h3 id="1.2">使用</h3>
-<p>安装好天马后，可以在终端下通过<code>tianma</code>命令来使用各种功能，例如查看帮助：</p>
-<pre><code>$ tianma -h
+<p>安装好天马后，可以在终端下通过<code>tianma-beta</code>命令来使用各种功能，例如查看帮助：</p>
+<pre><code>$ tianma-beta -h
 
-  Usage: tianma [command] [config]
+  Usage: tianma-beta [command] [config]
   ...</code></pre>
 <h4 id="1.2.1">工作目录</h4>
 <p>搭建服务器前一般需要创建一个工作目录。以下是一个典型的工作目录：</p>
@@ -332,20 +332,20 @@ tianma(80)
 <pre><code>$ pwd
 /home/admin/www                                  # 当前工作目录
 ...
-$ tianma                                         # 启动服务
+$ tianma-beta                                    # 启动服务
 [23:37:28] Using &quot;/home/admin/www/config.js&quot;
 [23:37:28] Press [Ctrl+C] to stop..
 ...
-$ tianma start                                   # 启动后台服务
+$ tianma-beta start                              # 启动后台服务
 [23:37:28] Using &quot;/home/admin/www/config.js&quot;
 [23:37:28] Service started
 ...
-$ tianma restart                                 # 重启当前后台服务
+$ tianma-beta restart                            # 重启当前后台服务
 [23:37:28] Service killed
 [23:37:28] Using &quot;/home/admin/www/config.js&quot;
 [23:37:28] Service started
 ...
-$ tianma stop                                    # 停止当前后台服务
+$ tianma-beta stop                               # 停止当前后台服务
 [23:37:28] Service killed</code></pre>
 <blockquote>
 <p>   后台服务启动后，即使关闭当前终端，服务依然继续运行。</p>
@@ -353,10 +353,10 @@ $ tianma stop                                    # 停止当前后台服务
 <p>另外，不使用默认配置文件时，可以通过<code>[config]</code>参数来指定配置文件路径。</p>
 <pre><code>$ pwd
 /home/admin/www                                  # 当前工作目录
-$ tianma foo.js                                  # 指定配置文件启动服务
+$ tianma-beta foo.js                             # 指定配置文件启动服务
 [23:37:28] Using &quot;/home/admin/www/foo.js&quot;
 ...
-$ tianma start bar.js                            # 指定配置文件启动后台服务
+$ tianma-beta start bar.js                       # 指定配置文件启动后台服务
 [23:37:28] Using &quot;/home/admin/www/bar.js&quot;
 [23:37:28] Service started</code></pre>
 <h3 id="1.3">全局目录</h3>
@@ -367,10 +367,10 @@ $ ls
 foo.js                                           # 工作目录下的配置文件
 $ ls ~/.tianma                                
 config.js  static.js                             # 全局目录下的配置文件
-$ tianma
+$ tianma-beta
 [23:37:28] Using &quot;/home/admin/.tianma/config.js&quot; # 使用全局目录下的默认配置
 ...
-$ tianma static
+$ tianma-beta static
 [23:37:28] Using &quot;/home/admin/.tianma/static.js&quot; # 使用全局目录下的自定义配置
 ...</code></pre>
 

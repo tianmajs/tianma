@@ -5,15 +5,15 @@
 
 首先请安装[NodeJS](http://nodejs.org)，然后在终端下使用以下命令安装天马。
 
-	$ npm install tianma -g
+	$ npm install tianma-beta -g
 
 ### 使用
 
-安装好天马后，可以在终端下通过`tianma`命令来使用各种功能，例如查看帮助：
+安装好天马后，可以在终端下通过`tianma-beta`命令来使用各种功能，例如查看帮助：
 
-	$ tianma -h
+	$ tianma-beta -h
 	
-	  Usage: tianma [command] [config]
+	  Usage: tianma-beta [command] [config]
 	  ...
 
 #### 工作目录
@@ -44,20 +44,20 @@
 	$ pwd
 	/home/admin/www                                  # 当前工作目录
 	...
-	$ tianma                                         # 启动服务
+	$ tianma-beta                                    # 启动服务
 	[23:37:28] Using "/home/admin/www/config.js"
 	[23:37:28] Press [Ctrl+C] to stop..
 	...
-	$ tianma start                                   # 启动后台服务
+	$ tianma-beta start                              # 启动后台服务
 	[23:37:28] Using "/home/admin/www/config.js"
 	[23:37:28] Service started
 	...
-	$ tianma restart                                 # 重启当前后台服务
+	$ tianma-beta restart                            # 重启当前后台服务
 	[23:37:28] Service killed
 	[23:37:28] Using "/home/admin/www/config.js"
 	[23:37:28] Service started
 	...
-	$ tianma stop                                    # 停止当前后台服务
+	$ tianma-beta stop                               # 停止当前后台服务
 	[23:37:28] Service killed
 
 >	后台服务启动后，即使关闭当前终端，服务依然继续运行。
@@ -66,10 +66,10 @@
 
 	$ pwd
 	/home/admin/www                                  # 当前工作目录
-	$ tianma foo.js                                  # 指定配置文件启动服务
+	$ tianma-beta foo.js                             # 指定配置文件启动服务
 	[23:37:28] Using "/home/admin/www/foo.js"
 	...
-	$ tianma start bar.js                            # 指定配置文件启动后台服务
+	$ tianma-beta start bar.js                       # 指定配置文件启动后台服务
 	[23:37:28] Using "/home/admin/www/bar.js"
 	[23:37:28] Service started
 
@@ -83,9 +83,9 @@
 	foo.js                                           # 工作目录下的配置文件
 	$ ls ~/.tianma                                
 	config.js  static.js                             # 全局目录下的配置文件
-	$ tianma
+	$ tianma-beta
 	[23:37:28] Using "/home/admin/.tianma/config.js" # 使用全局目录下的默认配置
 	...
-	$ tianma static
+	$ tianma-beta static
 	[23:37:28] Using "/home/admin/.tianma/static.js" # 使用全局目录下的自定义配置
 	...
