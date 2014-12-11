@@ -199,7 +199,7 @@ var	stop = exports.stop = function (callback) {
 	
 		if (pid) {
 			try {
-				process.kill(pid);
+				process.kill(parseInt(pid, 10));
 				fs.unlinkSync(tag);
 				console.log('Service killed.');
 			} catch (e) {
