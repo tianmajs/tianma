@@ -6,12 +6,6 @@ var cp = require('child_process'),
 	util = require('util');
 
 var PATH_NODE = process.argv[0],
-
-	PATH_GLOBAL = path.join(process.env['HOME']
-			|| process.env['USERPROFILE']
-			|| '.',
-		'.tianma'),
-
 	PATH_BOOTSTRAP = path.join(__dirname, 'bootstrap.js');
 
 /**
@@ -19,17 +13,11 @@ var PATH_NODE = process.argv[0],
  * @param filename {string}
  * @return {string|null}
  */
-function find(filename, cwd) {
+function find(filename) {
 	var pathname;
 
 	// Find in cwd first.
 	pathname = path.resolve(filename);
-	if (fs.existsSync(pathname)) {
-		return pathname;
-	}
-
-	// Then find global.
-	pathname = path.resolve(PATH_GLOBAL, filename);
 	if (fs.existsSync(pathname)) {
 		return pathname;
 	}

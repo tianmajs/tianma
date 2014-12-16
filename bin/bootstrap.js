@@ -4,12 +4,6 @@ var fs = require('fs'),
 	path = require('path'),
 	util = require('mini-util');
 
-var	PATH_RESOURCE = path.join(__dirname, '../res'),
-
-	PATH_GLOBAL = path.join(process.env['HOME']
-			|| process.env['USERPROFILE']
-			|| '.',
-		'.tianma');
 
 var MESSAGE = {
 	'EADDRINUSE': 'Error: Port %s is used by another program',
@@ -37,15 +31,7 @@ function cp(source, target) {
 	});
 }
 
-/**
- * If global config directory not exists, then create a default one.
- */
-function checkGlobalDir() {
-	if (!fs.existsSync(PATH_GLOBAL)) {
-		fs.mkdirSync(PATH_GLOBAL);
-		cp(PATH_RESOURCE, PATH_GLOBAL);
-	}
-}
+
 
 /**
  * Add a time stamp prefix to the output message.
@@ -82,7 +68,6 @@ function bootstrap(callback) {
 	}
 	
 	pretty();
-	checkGlobalDir();
 	callback();
 }
 

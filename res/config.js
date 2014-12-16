@@ -1,4 +1,6 @@
 var tianma = require('tianma');
 
-tianma(80)
-	.static();
+
+tianma()
+   .mount('/')
+   .static('../res')
