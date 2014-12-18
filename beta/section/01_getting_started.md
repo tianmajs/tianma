@@ -5,7 +5,7 @@
 
 首先请安装[NodeJS](http://nodejs.org)，然后在终端下使用以下命令安装天马。
 
-	$ npm install tianma@0.9.0 -g
+	$ npm install tianma@0.9.x -g
 
 ### 使用
 
