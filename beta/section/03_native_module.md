@@ -3,27 +3,6 @@
 
 天马内置了一些常用模块，合理组合之后能满足很多常见需求。
 
-### auth
-
->	该模块在用户首次访问服务时提示用户输入*账户*和*密码*进行身份认证。如果认证通过，该模块把请求交给后续模块继续处理，否则直接返回*403*响应，并继续提示用户验证身份。
-
-+ 通过键值对方式配置一到多个账户和*明文*密码。
-
-		tianma()
-			.auth({
-				'root': '12345',
-				'admin': 'abcde'
-			})
-			.static()
-
-+ 密码可以是经过`MD5`算法加密后的*密文*，以`#`打头。
-
-		tianma()
-			.auth({
-				'root': '#827ccb0eea8a706c4c34a16891f84e7b',
-				'admin': '#ab56b4d92b40713acc5af89985d4b786'
-			})
-			.static()
 
 ### cache
 
@@ -82,72 +61,6 @@
 			.compress('js', 'css', 'svg')
 			.static()
 
-### dynamic
-
->	如果后续模块返回的响应是一个HTML页面，该模块将响应内容作为一个[Micro Template](http://ejohn.org/blog/javascript-micro-templating/)进一步渲染后再返回。
->	
->	例如后续模块返回了以下HTML页面：
->
->		<!DOCTYPE html>
->		<ul>
->		<% items.forEach(function (value) { %>
->			<li><%=value%></li>
->		<% }); %>
->		<ul>
->
->	当上下文对象配置为`{ items: [ 'foo', 'bar' ] }`时，渲染后的页面如下：
->
->		<!DOCTYPE html>
->		<ul>
->			<li>foo</li>
->			<li>bar</li>
->		<ul>
-
-+ *预先指定*上下文对象。
-
-		tianma()
-			.dynamic({ items: [ 'foo', 'bar' ] })
-			.static()
-
-+ *动态生成*上下文对象。
-
-		tianma()
-			.dynamic(function (req, res) {
-				return {
-					items: [ req.hostname, req.pathname ]
-				};
-			})
-			.static()
-
-### refresh
-
->	如果到达的请求路径（`req.pathname`）满足*匹配规则*，并且包含`Cache-Control: no-cache`头字段（通常由CTRL+F5产生），该模块会检查*目标目录*下的文件是否有*变更*，并在有变更时在目标目录下运行*终端命令*，并在命令运行*完毕后*，再将请求交给后续模块处理。
-
-+ *快捷配置*下只需要指定要运行的*终端命令*，匹配规则默认匹配*任意路径*，目标目录默认使用*工作目录*。
-
-		tianma()
-			.refresh('grunt build')
-			.static('./build')
-
-+ *自定义*目标目录和匹配规则。
-
-		tianma()
-			.refresh({
-				action: 'grunt build',
-				target: './assets',
-				pattern: /^\/assets/
-			})
-			.static()
-
-+ 根据URL匹配结果*动态指定*目标目录。
-
-		tianma()
-			.refresh({
-				action: 'grunt build',
-				target: './$1',
-				pattern: /^\/(.*?)\//
-			})
-			.static()
 
 ### rewrite
 
