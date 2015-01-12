@@ -1,14 +1,19 @@
-天马HTTP服务器套件
-================
+天马HTTP中间件
+=============
 
-当前端工程师需要一个HTTP服务器来辅助开发或自娱自乐时，有以下选择——
+喜欢以路由规则和流水线的方式编写NodeJS HTTP服务器的同学请看过来。
 
-	Apache     PHP 
-	   Nginx   Java
-	IIS  .NET  ...
+	pegasus()
+		.mount('/', [
+			function (context) {
+				context.response
+					.status(200)
+					.data('Hello World!');
+			}
+		});
 
-但如果你觉得以上技术要么太重、要么太难、要么不好玩的时候，请试试看基于NodeJS的天马HTTP服务器套件（以下简称天马）。
+如果你觉得上边的API风格还不错的话，可以看看[**天马HTTP中间件使用手册**](http://nqdeng.github.io/pegasus)，里边有详尽的文档。
 
-首先可以看看[天马HTTP服务器套件使用手册](http://tianma.f2e.sc/beta/)，里边详细介绍了怎么安装和使用天马。
+看完之后，如果你决定要使用中间件写点代码，在动手之前也不妨再看看[**天马HTTP服务器套件使用手册**](http://nqdeng.github.io/pegasus)，或许这就是你想要的。
 
-如果你决定要使用天马做一些事情，并且恰好你也使用的Windows系统的话，还可以试试看[天马伴侣](https://github.com/tianmajs/tianma.daemon)，能简化服务的管理。
+当然，如果你还是觉得基于中间件自己二次开发比较靠谱的话，请尽情使用，有任何问题和建议的话也请随时反馈 : )

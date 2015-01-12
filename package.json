@@ -1,31 +1,35 @@
 {
 	"name": "tianma",
-	"description": "Tianma HTTP Server",
+	"description": "A tree-like HTTP framework",
+	"version": "1.0.0-b0",
+	"author": "Nanqiao Deng <nqdeng@gmail.com>",
 	"keywords": [
 		"framework",
-		"server",
 		"tianma"
 	],
 	"repository": {
 		"type": "git",
-		"url": "git://github.com/nqdeng/tianma.git"
+		"url": "git://github.com/tianmajs/pegasus.git"
 	},
-	"author": "Nanqiao Deng <nqdeng@gmail.com>",
-	"version": "0.9.0",
+	"license": "MIT",
+	"dependencies": {
+		"accepts": "1.0.7",
+		"cookie": "0.1.2",
+		"easy-https": "1.0.0",
+	    "iconv-lite": "0.2.11",
+	    “milu": "1.0.0",
+	    "mime-types": "1.0.2",
+	    "mini-util": "1.0.0",
+	    "type-is": "1.3.2"
+  	},
+	"devDependencies": {
+	    "mocha": "1.18.2"
+  	},
 	"engines": {
 		"node": ">=0.10.0"
 	},
-	"dependencies": {
-		"commander": "~2.3.0",
-	    "pegasus": "~0.9.0",
-	    "lru-cache": "~2.5.0",
-	    "node-forge": "~0.6.12",
-	    "mini-util": "~1.0.0",
-	    "semver": "~3.0.0",
-	    "source-map": "~0.1.0"
-  	},
-	"main": "lib/main.js",
-	"bin" : {
-		"tianma": "./bin/tianma.js"
+	"main": "lib/application.js",
+	"scripts": {
+		"test": "mocha"
 	}
 }
