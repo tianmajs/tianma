@@ -298,10 +298,10 @@ margin-top: 4em;
 <small>查看老版本的文档请<a href="./0.8.1/index.html">点击这里</a>.</small>
 <x-markdown src="section/00_intro.md" />
 <x-markdown src="section/01_getting_started.md" />
-<x-markdown src="section/02_application.md" />
-<x-markdown src="section/03_request.md" />
-<x-markdown src="section/04_response.md" />
-<x-markdown src="section/05_filter.md" />
+<x-markdown src="section/02_config.md" />
+<x-markdown src="section/03_native_module.md" />
+<x-markdown src="section/04_custom_module.md" />
+<x-markdown src="section/05_3rd_module.md" />
 <x-markdown src="section/06_links.md" />
 <footer>
 <x-markdown src="section/99_footer.md" />
