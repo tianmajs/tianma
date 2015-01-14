@@ -292,10 +292,9 @@ margin-top: 4em;
 <article>
 <div class='logo'></div>
 <header>
-<h1>Tianma();<sup>0.9.0</sup></h1>
+<h1>Tianma();<sup>beta</sup></h1>
 <div class="comment">// All-purpose toybox</div>
 </header>
-<small>查看老版本的文档请<a href="./0.8.1/index.html">点击这里</a>.</small>
 <x-markdown src="section/00_intro.md" />
 <x-markdown src="section/01_getting_started.md" />
 <x-markdown src="section/02_application.md" />
