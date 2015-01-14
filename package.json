@@ -1,7 +1,7 @@
 {
 	"name": "tianma",
 	"description": "A tree-like HTTP framework",
-	"version": "1.0.0-b0",
+	"version": "1.0.0-b1",
 	"author": "Nanqiao Deng <nqdeng@gmail.com>",
 	"keywords": [
 		"framework",
@@ -15,11 +15,10 @@
 	"dependencies": {
 		"accepts": "1.0.7",
 		"cookie": "0.1.2",
-		"easy-https": "1.0.0",
-	    "iconv-lite": "0.2.11",
-	    “milu": "1.0.0",
+		"milu": "~1.0.0",
 	    "mime-types": "1.0.2",
-	    "mini-util": "1.0.0",
+		"mini-co": "~1.0.0",
+	    "mini-util": "~1.1.0",
 	    "type-is": "1.3.2"
   	},
 	"devDependencies": {
