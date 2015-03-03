@@ -309,7 +309,7 @@ margin-top: 4em;
 <pre><code>var tianma = require(&#39;tianma&#39;);
 
 tianma(8080)
-    .pipe(function (next, done) { // x-response-time
+    .use(function (next, done) { // x-response-time
         var start = new Date;
         next(function (err) {
             if (!err) {
@@ -318,7 +318,7 @@ tianma(8080)
             done(err);
         });
     })
-    .pipe(function (next, done) { // response
+    .use(function (next, done) { // response
         this.response.data(&#39;Hello World!&#39;);
         done();
     });
@@ -329,12 +329,12 @@ $ node app.js</code></pre>
 <pre><code>var tianma = require(&#39;tianma&#39;);
 
 tianma(8080)
-    .pipe(function* (next) {  // x-response-time
+    .use(function* (next) {  // x-response-time
         var start = new Date;
         yield next;
         this.response.head(&#39;x-response-time&#39;, new Date - start);
     })
-    .pipe(function* (next) { // response
+    .use(function* (next) { // response
         this.response.data(&#39;Hello World!&#39;);
     });
 
@@ -342,27 +342,20 @@ tianma(8080)
 $ node --harmony app.js</code></pre>
 
 <h2 id="2">应用</h2>
-<p>创建一个监听器，然后创建一个HTTP服务器：</p>
+<p>创建一个应用，然后创建一个HTTP服务器：</p>
 <pre><code>var http = require(&#39;http&#39;);
 var tianma = require(&#39;tianma&#39;);
 var app = tianma();
 
-http.createServer(app).listen(8080);</code></pre>
-<p>或者在创建监听器时自动创建一个HTTP服务器：</p>
+http.createServer(app.run).listen(8080);</code></pre>
+<p>或者在创建应用时自动创建一个HTTP服务器：</p>
 <pre><code>var tianma = require(&#39;tianma&#39;);
 var app = tianma(8080);</code></pre>
-<p>在监听器上链式挂载模块：</p>
-<pre><code>app.pipe(function* (next) {     |      R
-    // ...                      |      |
-}).pipe(function* (next) {      |      *
-    // ...                      |      |
-});                             |      *</code></pre>
-<p>在监听器上树式挂载模块：</p>
-<pre><code>app.pipe(function* (next) {     |
+<p>在应用上挂载模块：</p>
+<pre><code>app.use(function* (next) {      |
     // ...                      |      R
-});                             |     / \
-app.pipe(function* (next) {     |    *   *
-    // ...                      |
+}).use(function* (next) {       |     / \
+    // ...                      |    *   *
 });                             |</code></pre>
 
 <h2 id="3">请求</h2>
@@ -476,32 +469,18 @@ request
 <p>   读取或修改请求数据。</p>
 </blockquote>
 <ul>
-<li><p>以<code>Stream</code>方式读取请求数据。</p>
+<li><p>以<code>Buffer</code>方式读取请求数据。</p>
 <pre><code>  request
-      .data().pipe(...</code></pre>
-</li>
-<li><p>自动把<code>Stream</code>合并为<code>Buffer</code>或<code>string</code>之后读取请求数据。</p>
-<pre><code>  request
-      .data(function (err, data) {
-          // ...
-      });
-
-  - or -
-
-  try {
-      var data = yield request.data;
-  } catch (err) {
-      // ...
-  }</code></pre>
+      .data() // =&gt; &lt;Buffer 0x00 ...</code></pre>
 </li>
 <li><p>写入一个<code>Buffer</code>或<code>string</code>。</p>
 <pre><code>  request
       .data(new Buffer(&#39;Hello&#39;))
       .data(&#39;Hello&#39;)</code></pre>
 </li>
-<li><p>写入一个<code>ReadableStream</code>。</p>
+<li><p>写入一个包含<code>Buffer</code>或<code>string</code>的<code>Array</code>。</p>
 <pre><code>  request
-      .data(fs.createReadStream(__filename))</code></pre>
+      .data([ &#39;hello&#39;, &#39;world&#39; ])</code></pre>
 </li>
 </ul>
 <h3 id="3.7">.head</h3>
@@ -734,7 +713,7 @@ $npm install tianma-static</code></pre>
 var tstatic = require(&#39;tianma-static&#39;);
 
 tianma(80)
-    .pipe(tstatic(&#39;./htdocs&#39;);</code></pre>
+    .use(tstatic(&#39;./htdocs&#39;);</code></pre>
 <p>又可以按照链式方法方式使用：</p>
 <pre><code>var tianma = require(&#39;tianma&#39;);
 var tstatic = require(&#39;tianma-static&#39;);
