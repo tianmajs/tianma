@@ -1,0 +1,75 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Users\\lilicia\\Toolkit\\node.exe',
+1 verbose cli   'C:\\Users\\lilicia\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'info',
+1 verbose cli   'g2c' ]
+2 info using npm@2.0.2
+3 info using node@v0.10.22
+4 verbose mapToRegistry name g2c
+5 verbose mapToRegistry uri https://registry.npmjs.org/g2c
+6 verbose request on initialization, where is /g2c
+7 verbose request after pass 1, where is /g2c
+8 verbose request url raw /g2c
+9 verbose request resolving registry [ 'https://registry.npmjs.org/', './g2c' ]
+10 verbose request after pass 2, where is https://registry.npmjs.org/g2c
+11 verbose request no auth needed
+12 info attempt registry request try #1 at 14:46:50
+13 verbose request id ebcc1e3674c79e1f
+14 http request GET https://registry.npmjs.org/g2c
+15 http 404 https://registry.npmjs.org/g2c
+16 verbose headers { date: 'Wed, 14 Jan 2015 06:46:38 GMT',
+16 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+16 verbose headers   'content-type': 'application/json',
+16 verbose headers   'cache-control': 'max-age=0',
+16 verbose headers   'content-length': '52',
+16 verbose headers   'accept-ranges': 'bytes',
+16 verbose headers   via: '1.1 varnish',
+16 verbose headers   age: '0',
+16 verbose headers   'x-served-by': 'cache-ty67-TYO',
+16 verbose headers   'x-cache': 'MISS',
+16 verbose headers   'x-cache-hits': '0',
+16 verbose headers   'x-timer': 'S1421217998.845395,VS0,VE116',
+16 verbose headers   'keep-alive': 'timeout=10, max=50',
+16 verbose headers   connection: 'Keep-Alive' }
+17 silly registry.get cb [ 404,
+17 silly registry.get   { date: 'Wed, 14 Jan 2015 06:46:38 GMT',
+17 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+17 silly registry.get     'content-type': 'application/json',
+17 silly registry.get     'cache-control': 'max-age=0',
+17 silly registry.get     'content-length': '52',
+17 silly registry.get     'accept-ranges': 'bytes',
+17 silly registry.get     via: '1.1 varnish',
+17 silly registry.get     age: '0',
+17 silly registry.get     'x-served-by': 'cache-ty67-TYO',
+17 silly registry.get     'x-cache': 'MISS',
+17 silly registry.get     'x-cache-hits': '0',
+17 silly registry.get     'x-timer': 'S1421217998.845395,VS0,VE116',
+17 silly registry.get     'keep-alive': 'timeout=10, max=50',
+17 silly registry.get     connection: 'Keep-Alive' } ]
+18 verbose stack Error: 404 Not Found: g2c
+18 verbose stack     at RegClient.<anonymous> (C:\Users\lilicia\AppData\Roaming\npm\node_modules\npm\node_modules\npm-registry-client\lib\request.js:258:14)
+18 verbose stack     at Request._callback (C:\Users\lilicia\AppData\Roaming\npm\node_modules\npm\node_modules\npm-registry-client\lib\request.js:197:65)
+18 verbose stack     at Request.self.callback (C:\Users\lilicia\AppData\Roaming\npm\node_modules\npm\node_modules\request\request.js:237:22)
+18 verbose stack     at Request.EventEmitter.emit (events.js:98:17)
+18 verbose stack     at Request.<anonymous> (C:\Users\lilicia\AppData\Roaming\npm\node_modules\npm\node_modules\request\request.js:1146:14)
+18 verbose stack     at Request.EventEmitter.emit (events.js:117:20)
+18 verbose stack     at IncomingMessage.<anonymous> (C:\Users\lilicia\AppData\Roaming\npm\node_modules\npm\node_modules\request\request.js:1097:12)
+18 verbose stack     at IncomingMessage.EventEmitter.emit (events.js:117:20)
+18 verbose stack     at _stream_readable.js:920:16
+18 verbose stack     at process._tickCallback (node.js:415:13)
+19 verbose statusCode 404
+20 verbose pkgid g2c
+21 verbose cwd D:\Website\node_modules\tianma.pages
+22 error Windows_NT 6.2.9200
+23 error argv "C:\\Users\\lilicia\\Toolkit\\node.exe" "C:\\Users\\lilicia\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js" "info" "g2c"
+24 error node v0.10.22
+25 error npm  v2.0.2
+26 error code E404
+27 error 404 Not Found: g2c
+27 error 404
+27 error 404 'g2c' is not in the npm registry.
+27 error 404 You should bug the author to publish it (or use the name yourself!)
+27 error 404
+27 error 404 Note that you can also install from a
+27 error 404 tarball, folder, http url, or git url.
+28 verbose exit [ 1, true ]

@@ -12,7 +12,7 @@
 	var tianma = require('tianma');
 	
 	tianma(8080)
-		.pipe(function (next, done) { // x-response-time
+		.use(function (next, done) { // x-response-time
 			var start = new Date;
 			next(function (err) {
 				if (!err) {
@@ -21,7 +21,7 @@
 				done(err);
 			});
 		})
-		.pipe(function (next, done) { // response
+		.use(function (next, done) { // response
 			this.response.data('Hello World!');
 			done();
 		});
@@ -34,12 +34,12 @@
 	var tianma = require('tianma');
 	
 	tianma(8080)
-		.pipe(function* (next) {  // x-response-time
+		.use(function* (next) {  // x-response-time
 			var start = new Date;
 			yield next;
 			this.response.head('x-response-time', new Date - start);
 		})
-		.pipe(function* (next) { // response
+		.use(function* (next) { // response
 			this.response.data('Hello World!');
 		});
 		

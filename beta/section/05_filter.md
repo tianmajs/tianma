@@ -53,7 +53,7 @@
 	var tstatic = require('tianma-static');
 	
 	tianma(80)
-		.pipe(tstatic('./htdocs');
+		.use(tstatic('./htdocs');
 		
 又可以按照链式方法方式使用：
 

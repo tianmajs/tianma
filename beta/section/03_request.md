@@ -113,25 +113,10 @@
 
 >	读取或修改请求数据。
 
-+ 以`Stream`方式读取请求数据。
++ 以`Buffer`方式读取请求数据。
 
 		request
-			.data().pipe(...
-			
-+ 自动把`Stream`合并为`Buffer`或`string`之后读取请求数据。
-
-		request
-			.data(function (err, data) {
-				// ...
-			});
-			
-		- or -
-		
-		try {
-			var data = yield request.data;
-		} catch (err) {
-			// ...
-		}
+			.data() // => <Buffer 0x00 ...
 			
 + 写入一个`Buffer`或`string`。
 
@@ -139,10 +124,10 @@
 			.data(new Buffer('Hello'))
 			.data('Hello')
 
-+ 写入一个`ReadableStream`。
++ 写入一个包含`Buffer`或`string`的`Array`。
 
 		request
-			.data(fs.createReadStream(__filename))
+			.data([ 'hello', 'world' ])
 
 ### .head
 
