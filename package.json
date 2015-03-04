@@ -1,7 +1,7 @@
 {
 	"name": "tianma",
-	"description": "A tree-like HTTP framework",
-	"version": "1.0.0-b1",
+	"description": "The chainable web framework",
+	"version": "1.0.0-r0",
 	"author": "Nanqiao Deng <nqdeng@gmail.com>",
 	"keywords": [
 		"framework",
@@ -9,15 +9,15 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "git://github.com/tianmajs/pegasus.git"
+		"url": "git://github.com/tianmajs/tianma.git"
 	},
 	"license": "MIT",
 	"dependencies": {
 		"accepts": "1.0.7",
+		"bl": "0.9.4",
 		"cookie": "0.1.2",
-		"milu": "~1.0.0",
+		"milu": "~1.1.0",
 	    "mime-types": "1.0.2",
-		"mini-co": "~1.0.0",
 	    "mini-util": "~1.1.0",
 	    "type-is": "1.3.2"
   	},
