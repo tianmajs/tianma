@@ -1,34 +1,38 @@
 {
-	"name": "tianma",
-	"description": "The chainable web framework",
-	"version": "1.0.0-r1",
-	"author": "Nanqiao Deng <nqdeng@gmail.com>",
-	"keywords": [
-		"framework",
-		"tianma"
-	],
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/tianmajs/tianma.git"
-	},
-	"license": "MIT",
-	"dependencies": {
-		"accepts": "1.0.7",
-		"bl": "0.9.4",
-		"cookie": "0.1.2",
-		"milu": "~1.1.0",
-	    "mime-types": "1.0.2",
-	    "mini-util": "~1.1.0",
-	    "type-is": "1.3.2"
-  	},
-	"devDependencies": {
-	    "mocha": "1.18.2"
-  	},
-	"engines": {
-		"node": ">=0.10.0"
-	},
-	"main": "lib/application.js",
-	"scripts": {
-		"test": "mocha"
-	}
+    "name": "tianma",
+    "description": "The chainable web framework",
+    "version": "1.0.0-r1",
+    "author": "Nanqiao Deng <nqdeng@gmail.com>",
+    "keywords": [
+        "framework",
+        "tianma"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/tianmajs/tianma.git"
+    },
+    "license": "MIT",
+    "dependencies": {
+        "accepts": "1.0.7",
+        "bl": "0.9.4",
+        "cookie": "0.1.2",
+        "milu": "~1.1.0",
+        "mime-types": "1.0.2",
+        "mini-util": "~1.1.0",
+        "type-is": "1.3.2"
+    },
+    "devDependencies": {
+        "supertest": "^0.15.0",
+        "mocha": "^2.2.1",
+        "chai": "^2.1.2",
+        "buffer-equal": "^0.0.1",
+        "deep-equal":"^0.1.2"
+    },
+    "engines": {
+        "node": ">=0.10.0"
+    },
+    "main": "lib/application.js",
+    "scripts": {
+        "test": "mocha"
+    }
 }
