@@ -101,22 +101,6 @@ describe('tianma server',function (){
     });
 
 
-    // it('should support https',function (done){
-
-    //     var options = {
-    //       key: fs.readFileSync(path.resolve(__dirname, './fixtures/certificates/tianma.key')),
-    //       cert: fs.readFileSync(path.resolve(__dirname, './fixtures/certificates/tianma.cer'))
-    //     };
-
-    //     var server = https.createServer(options,app.run);
-    //     app.use(function *(next){
-    //         expect(this.request.protocol).to.equal('https:');
-    //     });
-    //     request(server)
-    //     .get('/anypath')
-    //     .end(done);
-    // });
-
 
 });
 
