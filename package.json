@@ -24,10 +24,8 @@
     "devDependencies": {
         "supertest": "^0.15.0",
         "mocha": "^2.2.1",
-        "chai": "^2.1.2",
-        "buffer-equal": "^0.0.1",
+        "should": "^3.3.2",
         "rewire": "^2.3.0",
-        "deep-equal": "^0.1.2",
         "tianma-mount": "~1.1.0",
         "tianma-static": "1.0.0-b2"
     },

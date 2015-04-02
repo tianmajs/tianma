@@ -1,8 +1,7 @@
 "use strict";
 
-var expect = require('chai').expect;
 var Response = require('../lib/response');
-var deepEqual = require('deep-equal');
+var should = require('should');
 
 describe('ctx.response',function (){
     var response = null;
@@ -13,7 +12,7 @@ describe('ctx.response',function (){
     describe('ctx.response.cookie()',function (){
         it('should set cookie',function (){
             response.cookie('a','1');
-            expect(deepEqual(response.head('set-cookie'),['a=1'])).to.equal(true);
+            response.head('set-cookie').should.eql(['a=1']);
         });
 
         it('should set cookie with options',function (){
@@ -22,18 +21,18 @@ describe('ctx.response',function (){
                 secure: true,
                 httpOnly: true
             });
-            expect(deepEqual(response.head('set-cookie'),[ 'a=1; Max-Age=1000; HttpOnly; Secure' ])).to.equal(true);
+            response.head('set-cookie').should.eql([ 'a=1; Max-Age=1000; HttpOnly; Secure' ]);
         });
     });
 
     describe('ctx.response.status()',function (){
         it('should get default status',function (){
-            expect(response.status()).to.equal(200);
+            response.status().should.equal(200);
         });
 
         it('should set correct status',function (){
             response.status(404);
-            expect(response.status()).to.equal(404);
+            response.status().should.equal(404);
         });
     });
 });

@@ -5,8 +5,7 @@ var fs = require('fs');
 var path = require('path');
 var rewire = require('rewire');
 var request = require('supertest');
-var expect = require('chai').expect;
-var deepEqual = require('deep-equal');
+var should = require('should');
 
 var tianma = rewire('../lib/application');
 var app;
@@ -17,10 +16,14 @@ beforeEach(function() {
 
 describe('tianma private logic', function() {
     describe('toCamel()', function() {
+        it('should return origin string', function() {
+            var toCamelFn = tianma.__get__('toCamel');
+            toCamelFn('demo').should.equal('demo');
+        });
+
         it('should return camel string', function() {
             var toCamelFn = tianma.__get__('toCamel');
-            expect(toCamelFn('demo')).to.equal('demo');
-            expect(toCamelFn('test-demo')).to.equal('testDemo');
+            toCamelFn('test-demo').should.equal('testDemo');
         });
     });
 
@@ -35,7 +38,7 @@ describe('tianma private logic', function() {
             }).map(function(module) {
                 return toCamelFn(module.replace('tianma-', ''));
             });
-            expect(deepEqual(expectVerbKeys, verbKeys)).to.equal(true);
+            verbKeys.should.eql(expectVerbKeys);
         });
 
         it('should have plugin methods', function() {
@@ -43,7 +46,7 @@ describe('tianma private logic', function() {
             var verb = tianma.__get__('verb');
             var verbKeys = Object.keys(verb);
             verbKeys.forEach(function(key) {
-                expect(app[key]).to.be.a('function');
+                app[key].should.be.Function;
             });
         });
     });
@@ -56,7 +59,7 @@ describe('tianma server', function() {
             .get('/anypath')
             .end(function(err, res) {
                 if (err) return done(err);
-                expect(res.headers['content-length']).to.equal(undefined);
+                (res.headers['content-length']===undefined).should.be.true;
                 done();
             })
     });

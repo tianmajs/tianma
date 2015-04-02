@@ -1,9 +1,7 @@
 "use strict";
 
-var expect = require('chai').expect;
 var Message = require('../lib/message');
-var bufferEqual = require('buffer-equal');
-var deepEqual = require('deep-equal');
+var should = require('should');
 
 describe('the base class of ctx.request/response',function (){
     var message = null;
@@ -16,21 +14,21 @@ describe('the base class of ctx.request/response',function (){
 
     describe('head()',function (){
         describe('set header',function (){
-            it('should set one field with Uppercase',function (){
+            it('should set one field when uppercase',function (){
                 // upper to lower
-                message.head('Accept-Encoding','gzip, deflate, sdch');
-                expect(message.head('accept-encoding')).to.equal('gzip, deflate, sdch');
+                message.head('Accept-Encoding','gzip');
+                message.head('accept-encoding').should.equal('gzip');
             });
 
-            it('should set one field with array',function (){
+            it('should set one field when array',function (){
                 var arr = ['key1=value1','key2=value2'];
                 message.head('set-cookie',arr);
-                expect(deepEqual(message.head('set-cookie'),arr)).to.equal(true);
+                message.head('set-cookie').should.eql(arr);
             });
 
             it('should remove one field',function (){
                 message.head('cache-control','');
-                expect(message.head('cache-control')).to.equal('');
+                message.head('cache-control').should.equal('');
             });
 
             it('should set multiple fields',function (){
@@ -39,15 +37,15 @@ describe('the base class of ctx.request/response',function (){
                     'if-modified-since': 'Sat, 29 Oct 1994 19:43:31 GMT'
                 };
                 message.head(setting);
-                expect(message.head('cache-control')).to.equal(setting['cache-control']);
-                expect(message.head('if-modified-since')).to.equal(setting['if-modified-since']);
+                message.head('cache-control').should.equal(setting['cache-control']);
+                message.head('if-modified-since').should.equal(setting['if-modified-since']);
             });
         });
 
         describe('get header',function (){
             it('should get one field',function (){
                 message.head('cache-control','max-age=1000');
-                expect(message.head('cache-control')).to.equal('max-age=1000');
+                message.head('cache-control').should.equal('max-age=1000');
             });
 
             it('should get all fields',function (){
@@ -56,7 +54,7 @@ describe('the base class of ctx.request/response',function (){
                     'if-modified-since': 'Sat, 29 Oct 1994 19:43:31 GMT'
                 };
                 message.head(setting);
-                expect(deepEqual(message.head(),setting)).to.equal(true);
+                message.head().should.eql(setting);
             });
         });
     });
@@ -64,16 +62,16 @@ describe('the base class of ctx.request/response',function (){
     describe('type()',function (){
         it('should return correct type',function (){
             message.head('content-type','text/html; charset=utf-8');
-            expect(message.type()).to.equal('text/html');
+            message.type().should.equal('text/html');
         });
 
         it('should return empty ',function (){
-            expect(message.type()).to.equal('');
+            message.type().should.equal('');
         });
 
         it('should set the type',function (){
             message.type('application/json;charset=utf-8');
-            expect(message.type()).to.equal('application/json');
+            message.type().should.equal('application/json');
         });
     });
 
@@ -82,29 +80,34 @@ describe('the base class of ctx.request/response',function (){
     });
 
     describe('data()',function (){
+        it('should return an buffer object',function (){
+            message.data('hello world');
+            message.data().should.be.an.instanceOf(Buffer);
+        });
+
         it('should return correct data when pass a string object',function (){
             var value = 'hello world';
             message.data(value);
-            expect(bufferEqual(message.data(),new Buffer(value))).to.equal(true);
+            Buffer.compare(message.data(),new Buffer(value)).should.equal(0);
         });
 
         it('should return correct data when pass a buffer object',function (){
             var value = 'hello world';
             var buf = new Buffer(value);
             message.data(buf);
-            expect(bufferEqual(message.data(),new Buffer(value))).to.equal(true);
+            Buffer.compare(message.data(),new Buffer(value)).should.equal(0);
         });
 
         it('should return correct data when pass an array of strings',function (){
             var value = ['hello','world'];
             message.data(value);
-            expect(bufferEqual(message.data(),new Buffer(value.join('')))).to.equal(true);
+            Buffer.compare(message.data(),new Buffer(value.join(''))).should.equal(0);
         });
 
         it('should return correct data when pass an array of buffers',function (){
             var bufArray = [new Buffer('hello'),new Buffer('world')];
             message.data(bufArray);
-            expect(bufferEqual(message.data(),Buffer.concat(bufArray))).to.equal(true);
+            Buffer.compare(message.data(),Buffer.concat(bufArray)).should.equal(0);
         });
     });
 

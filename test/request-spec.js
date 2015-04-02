@@ -1,8 +1,7 @@
 "use strict";
 
-var expect = require('chai').expect;
 var Request = require('../lib/request');
-var deepEqual = require('deep-equal');
+var should = require('should');
 
 describe('ctx.request',function (){
     var request = null;
@@ -18,36 +17,36 @@ describe('ctx.request',function (){
     describe('ctx.request.cookie(name)',function (){
         it('should get cookie',function (){
             request.head('cookie','a=aaaa;b=bbbb');
-            expect(request.cookie('b')).to.equal('bbbb');
+            request.cookie('b').should.equal('bbbb');
         });
 
         it('should return empty when cookie isn\'t exist',function (){
-            expect(request.cookie('cname')).to.equal('');
+            request.cookie('cname').should.equal('');
         });
     });
 
     describe('ctx.request.method()',function (){
         it('should get correct method',function (){
             request.method('post');
-            expect(request.method()).to.equal('POST');
+            request.method().should.equal('POST');
         });
     });
 
     describe('ctx.request.ip()',function (){
         it('should get default ip',function (){
-            expect(request.ip()).to.equal('0.0.0.0');
+            request.ip().should.equal('0.0.0.0');
         });
 
         it('should return correct ip',function (){
             request.ip('10.10.10.10');
-            expect(request.ip()).to.equal('10.10.10.10');
+            request.ip().should.equal('10.10.10.10');
         });
     });
 
     describe('ctx.request.url()',function (){
         it('should slashes denote to host',function (){
             request.url('//localhost:8080/a');
-            expect(request.url()).to.equal('http://localhost:8080/a');
+            request.url().should.equal('http://localhost:8080/a');
         });
 
         // necessary?
@@ -57,38 +56,38 @@ describe('ctx.request',function (){
             });
 
             it('should get protocol',function (){
-                expect(request.protocol).to.equal('http:');
+                request.protocol.should.equal('http:');
             });
             it('should get auth',function (){
-                expect(request.auth).to.equal('user:pass');
+                request.auth.should.equal('user:pass');
             });
 
             it('should get host',function (){
-                expect(request.host).to.equal('www.alibaba.com');
+                request.host.should.equal('www.alibaba.com');
             });
 
             it('should get port',function (){
-                expect(request.port).to.equal('');
+                request.port.should.equal('');
             });
 
             it('should get hostname',function (){
-                expect(request.hostname).to.equal('www.alibaba.com');
+                request.hostname.should.equal('www.alibaba.com');
             });
 
             it('should get pathname',function (){
-                expect(request.pathname).to.equal('/p/a/t/h');
+                request.pathname.should.equal('/p/a/t/h');
             });
 
             it('should get search',function (){
-                expect(request.search).to.equal('?query=string');
+                request.search.should.equal('?query=string');
             });
 
             it('should get path',function (){
-                expect(request.path).to.equal('/p/a/t/h?query=string');
+                request.path.should.equal('/p/a/t/h?query=string');
             });
 
             it('should get hash',function (){
-                expect(request.hash).to.equal('#hash');
+                request.hash.should.equal('#hash');
             });
         });
     });
@@ -96,26 +95,24 @@ describe('ctx.request',function (){
     describe('ctx.request.query',function (){
         it('should get a query object',function (){
             request.url('http://localhost:8080/a/b/c?time=1212323&debug=true');
-            expect(request.query).to.be.a('object');
-            expect(request.query['debug']).to.equal('true');
+            request.query.should.be.type('object').and.have.property('debug','true');
         });
 
         it('should get a empty object',function (){
             request.url('http://localhost:8080/a/b/c');
-            expect(request.query).to.be.a('object');
-            expect(Object.keys(request.query)).to.have.length(0);
+            request.query.should.be.type('object');
         });
     });
 
     describe('ctx.request.accepts*',function (){
         it('should return all accepts',function (){
             request.head('accept','text/html,application/xml,*/*');
-            expect(deepEqual(request.accepts(),['text/html','application/xml','*/*'])).to.equal(true);
+            request.accepts().should.eql(['text/html','application/xml','*/*']);
         });
 
         it('should return false when accept is not populated',function (){
             request.head('accept','text/html,application/xml');
-            expect(request.accepts('png')).to.equal(false);
+            request.accepts('png').should.be.an.false;
         });
     });
 
