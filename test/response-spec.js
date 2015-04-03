@@ -3,6 +3,15 @@
 var Response = require('../lib/response');
 var should = require('should');
 
+describe('constructor',function (){
+    it('should create a new response instance',function (){
+        var response = new Response({
+            status: 404
+        });
+        response.should.be.an.instanceOf(Response);
+    });
+});
+
 describe('ctx.response',function (){
     var response = null;
     beforeEach(function (){

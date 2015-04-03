@@ -3,6 +3,16 @@
 var Message = require('../lib/message');
 var should = require('should');
 
+describe('constructor',function (){
+    it('should create a new message instance',function (){
+        var message = new Message({
+            headers: {},
+            data: [new Buffer(0)]
+        });
+        message.should.be.an.instanceOf(Message).and.have.property('__');
+    });
+});
+
 describe('the base class of ctx.request/response',function (){
     var message = null;
     beforeEach(function (){

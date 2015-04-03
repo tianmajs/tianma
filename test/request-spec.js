@@ -3,6 +3,18 @@
 var Request = require('../lib/request');
 var should = require('should');
 
+describe('constructor',function (){
+    it('should create a new request instance',function (){
+        var request = new Request({
+            url: 'http://i.alicdn.com',
+            method: 'GET',
+            headers: {},
+            data: [new Buffer(0)]
+        });
+        request.should.be.an.instanceOf(Request);
+    });
+});
+
 describe('ctx.request',function (){
     var request = null;
     beforeEach(function (){
