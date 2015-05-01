@@ -1,7 +1,7 @@
 {
     "name": "tianma",
     "description": "The chainable web framework",
-    "version": "1.0.0-r1",
+    "version": "1.0.0",
     "author": "Nanqiao Deng <nqdeng@gmail.com>",
     "keywords": [
         "framework",

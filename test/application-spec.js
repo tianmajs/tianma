@@ -32,12 +32,14 @@ describe('tianma private logic', function() {
             var verb = tianma.__get__('verb');
             var verbKeys = Object.keys(verb);
             var devDeps = require('../package.json').devDependencies;
-            var expectVerbKeys = Object.keys(devDeps).filter(function(module) {
+            
+            Object.keys(devDeps).filter(function(module) {
                 return module.match(/^tianma-.*/);
             }).map(function(module) {
                 return toCamelFn(module.replace('tianma-', ''));
-            });
-            verbKeys.should.eql(expectVerbKeys);
+            }).every(function(module) {
+                return verbKeys.indexOf(module) !== -1;
+            }).should.be.true;
         });
 
         it('should have plugin methods', function() {
@@ -58,7 +60,7 @@ describe('tianma server', function() {
             .get('/anypath')
             .end(function(err, res) {
                 if (err) return done(err);
-                (res.headers['content-length']===undefined).should.be.true;
+                (res.headers['content-length'] === undefined).should.be.true;
                 done();
             })
     });
